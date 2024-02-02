@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Grocery List Manager",
+    "description": "This application allows you to add grocery stores and items. Automatically calculates unit pricing. See which items are the cheapest, or where to find them.",
+    "techStack": ["JavaScript","React", "HTML", "CSS", "Bootstrap"],
+    "imageDir": ["/assets/images/projectScreenshots/groceryListPageExample.png"],
+    "link": "/grocery-list",
+    "url": "https://github.com/goliveonafarm/GroceryManager"
+  },
+  {
+    "name": "Emoji Translator & Keyboard",
+    "description": "Decodes user input while changing any emojis into their description values. Also features an emoji keyboard, clickable emojis, and an information area detailing each emoji.",
+    "techStack": ["JavaScript","React", "HTML", "CSS", "Bootstrap"],
+    "imageDir": ["/assets/images/projectScreenshots/emojiKeyboardExample.png"],
+    "link": "/emoji-translator",
+    "url": "https://github.com/goliveonafarm/EmojiTranslator"
+  }
+]
