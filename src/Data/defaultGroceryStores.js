@@ -151,7 +151,7 @@ const defaultGroceryStores = [
             {
                 "id": 1704648026635,
                 "type": "Organic Onion",
-                "brand": "Wessley Farms",
+                "brand": "Wellsley Farms",
                 "cost": 3.99,
                 "size": 3,
                 "sizeType": "lb",
@@ -609,17 +609,6 @@ const defaultGroceryStores = [
                 "dateAdded": "1/27/2024"
             },
             {
-                "id": 1706378525783,
-                "type": "Organic Milk (whole)",
-                "brand": "Organic Valley",
-                "cost": 4.96,
-                "size": 1,
-                "sizeType": "gal",
-                "parentId": 1704611159221,
-                "pricePerOz": 0.03875,
-                "dateAdded": "1/27/2024"
-            },
-            {
                 "id": 1706416267195,
                 "type": "Organic Milk (whole)",
                 "brand": "Great Value",
@@ -671,17 +660,6 @@ const defaultGroceryStores = [
                 "parentId": 1704611173904,
                 "pricePerOz": 2.94,
                 "dateAdded": "1/7/2024"
-            },
-            {
-                "id": 1706331962881,
-                "type": "Organic Bell Pepper (color)",
-                "brand": "",
-                "cost": 4.49,
-                "size": 1,
-                "sizeType": "lb",
-                "parentId": 1704611173904,
-                "pricePerOz": 0.280625,
-                "dateAdded": "1/27/2024"
             },
             {
                 "id": 1706332000409,

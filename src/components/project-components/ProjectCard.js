@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 const ProjectCard = ({ project, imageOnLeft }) => {
     const { name, description, techStack, imageDir, link, url } = project;
     return (
-        <Col className='pb-3'>
-            <Card>
+        <Col sm={12} md={6} className='pb-3'>
+            <Card className=' h-100'>
                 <Row>
-                    <Col xs={12} md={{ span: 6, order: imageOnLeft ? 'first' : 'last' }} >
-                        <Card.Img className='full-width' src={imageDir} alt={`Screen shot of ${name} page`}></Card.Img>
+                    <Col xs={12} >
+                        <Card.Img className='' src={imageDir} alt={`Screen shot of ${name} page`}></Card.Img>
                     </Col>
-                    <Col xs={12} md={6}>
+                    <Col xs={12}>
                         <Card.Body>
                             <Card.Title>
                                 {name}
