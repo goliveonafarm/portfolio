@@ -6,13 +6,13 @@ const AboutPage = () => {
     return (
         <div className="">
             <h1>About</h1>
-            <p>I'm most familiar with JavaScript. I've spent much time learning about the language on a fundamental level.
+            <p>My current focus is on building a strong foundation in React development while also expanding my knowledge of various other programming skills and languages.
             </p>
-            <p>I am hoping to not only build a solid foundation for my React development, but also increase my knowledge of the C language.
+            <p>My current focus is on building an equally strong foundation in React development, while also expanding my knowledge of various other programming skills and languages.
             </p>
-            <p>I have watched “Learn Multiplatform 8086 Assembly” by ChibiAkumas to get a better understanding of the C. Though this doesn't perfectly translate over to JavaScript, I have also watched “JavaScript: Understanding the Weird Parts” by Anthony Alicea to get a firm understanding of that language. In addition to those, I've also watched “C# Tutorial For Beginners” and “SQL Server Tutorial” series by KudVenkat.
+            <p>To broaden my skill set, I've explored different areas. I have watched 'Learn Multiplatform 8086 Assembly' by ChibiAkumas to gain insights into C, even though it doesn't directly relate to JavaScript. Additionally, I completed the 'JavaScript: Understanding the Weird Parts' course by Anthony Alicea to strengthen my grasp of JavaScript. I've also explored 'C# Tutorial For Beginners' and 'SQL Server Tutorial' series by KudVenkat.
             </p>
-            <p>Right now I am putting most of my effort into learning more about the React framework, expanding my skills as a JavaScript developer, and building upon my portfolio.
+            <p>Currently, my primary goal is to deepen my understanding of the React framework, enhance my capabilities as a JavaScript developer, and expand my portfolio.
             </p>
             <Row className="pb-3 text-center">
                 {stackList.map((item, index)=>(
