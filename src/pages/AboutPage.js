@@ -4,9 +4,9 @@ import { Row, Col } from 'react-bootstrap';
 const AboutPage = () => {
     let stackList=['JavaScript', 'NodeJs', 'React', 'HTML', 'CSS', 'Bootstrap', 'MongoDb', 'C', 'CSharp', 'SQL'];
     return (
-        <div className="">
+        <div>
             <h1>About</h1>
-            <p>My current focus is on building a strong foundation in React development while also expanding my knowledge of various other programming skills and languages.
+            <p>I have developed a strong foundation in JavaScript, dedicating a significant amount of time to understanding the language at a fundamental level.
             </p>
             <p>My current focus is on building an equally strong foundation in React development, while also expanding my knowledge of various other programming skills and languages.
             </p>
