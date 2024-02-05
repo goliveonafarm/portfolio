@@ -64,7 +64,6 @@ const EmojiTranslatorPage = () => {
     };
 
     const handleEnterEmoji = (e) => {
-        console.log(e)
         if (e.key === 'Enter') {
             const emojiText = e.target.textContent;
             let match = findEmoji(emojiText, allEmojisArray);
