@@ -27,7 +27,6 @@ const CustomTooltip = ({ children, tooltipText, placement, variant = {} }) => {
     if (tooltipText === '') { return <span key={key}>{children}</span> };
     return (
         <OverlayTrigger
-        delay={30}
             key={key}
             placement={placement || 'top'}
             overlay={

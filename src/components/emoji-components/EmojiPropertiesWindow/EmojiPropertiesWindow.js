@@ -3,7 +3,7 @@ import EmojiButton from '../EmojiButton/EmojiButton.js';
 import { findEmoji, convertEmojiIntoCodeByteString } from '../../../services/emojiConversionService.js';
 import './EmojiPropertiesWindow.css';
 
-const EmojiPropertiesWindow = ({ emoji, emojiList, handleClick }) => {
+const EmojiPropertiesWindow = ({ emoji, emojiList, handleClick, handleKeyDown }) => {
     const classNames = `bg-dark text-light border border-secondary rounded emojiWindow`;
 
     if (emoji === null) return (<Row className={classNames}></Row>);
@@ -15,7 +15,7 @@ const EmojiPropertiesWindow = ({ emoji, emojiList, handleClick }) => {
     })
 
     return (
-        <Row className={classNames} readOnly>
+        <Row className={classNames} readOnly onKeyDown={(e) => handleKeyDown(e)}>
             <Row>
                 <Col>{`Emoji: ${emoji.character}`}</Col>
             </Row>
@@ -53,8 +53,9 @@ const EmojiPropertiesWindow = ({ emoji, emojiList, handleClick }) => {
                     {`UTF-16 Code Units: ${codeBytes}`}
                 </Col>
             </Row>
-            <Row>
-                <Col onClick={handleClick}>
+            <Row >
+                <Col onClick={handleClick}
+                    >
                     {`Variants: `}{
                         emoji.variants && emoji.variants.map((variant, index) => {
                             const match = findEmoji(variant.character, emojiList)

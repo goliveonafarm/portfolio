@@ -63,6 +63,15 @@ const EmojiTranslatorPage = () => {
         if (match) setEmojiInput({ ...match });
     };
 
+    const handleEnterEmoji = (e) => {
+        console.log(e)
+        if (e.key === 'Enter') {
+            const emojiText = e.target.textContent;
+            let match = findEmoji(emojiText, allEmojisArray);
+            if (match) setEmojiInput({ ...match });
+        }
+    }
+
     const onChangeItemsPerPage = (paginateSettingObj, newItemsPerPage) => {
         //can change this later to update pagination settings to local storagef
         return;
@@ -78,7 +87,8 @@ const EmojiTranslatorPage = () => {
 
     return (
         <div>
-            <Row onClick={handleClickEmoji}>
+            <Row onClick={handleClickEmoji}
+                onKeyDown={handleEnterEmoji}>
                 <h1>Emoji keyboard and translator</h1>
                 <p>Try decoding this sentence -</p>
                 <p>Located in <EmojiButton emojiObject={supportedEmojisArray[2419]} /><EmojiButton emojiObject={supportedEmojisArray[3313]} />, I'm <EmojiButton emojiObject={supportedEmojisArray[2790]} /> for a <EmojiButton emojiObject={supportedEmojisArray[3037]} /> and <EmojiButton emojiObject={supportedEmojisArray[2771]} /> role where I can <EmojiButton emojiObject={supportedEmojisArray[2852]} /> my skills. <EmojiButton emojiObject={supportedEmojisArray[2966]} /> for work and <EmojiButton emojiObject={supportedEmojisArray[2540]} /> to start ASAP! I'm all about bringing <EmojiButton emojiObject={supportedEmojisArray[2793]} /> and <EmojiButton emojiObject={supportedEmojisArray[2644]} /> to my work.</p>
@@ -114,8 +124,10 @@ const EmojiTranslatorPage = () => {
                 emoji={emojiInput}
                 emojiList={allEmojisArray}
                 handleClick={handleClickEmoji}
+                handleKeyDown={handleEnterEmoji}
             />
             <Row onClick={handleClickEmoji}
+                onKeyDown={handleEnterEmoji}
                 className='pb-3'>
                 {emojiButtons}
             </Row>
