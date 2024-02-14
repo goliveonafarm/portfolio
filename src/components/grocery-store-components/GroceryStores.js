@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import GroceryStore from "../../models/GroceryStoreModel";
 import GroceryStoreCard from "./GroceryStoreCard";
 import GroceryItem from "../../models/GroceryItemModel";
@@ -8,10 +8,9 @@ import roundToCent from "../../utils/roundToCent";
 export const GroceryStores = ({ highlightCheapest, setHighlightCheapest, groceryStores, setGroceryStores }) => {
     useEffect(() => {
         const loadedStores = localStorage.getItem('groceryStores');
-        if (loadedStores && loadedStores.length > 2) {
+
+        if (loadedStores && JSON.parse(loadedStores).length > 0) {
             setGroceryStores(JSON.parse(loadedStores));
-            //this next line stops local storage from loading (it's for debugging purposes)
-            //setGroceryStores(defaultGroceryStores);
         } else {
             setGroceryStores(defaultGroceryStores);
             localStorage.setItem('groceryStores', JSON.stringify(defaultGroceryStores));
@@ -105,24 +104,6 @@ export const GroceryStores = ({ highlightCheapest, setHighlightCheapest, grocery
         })
 
         return output;
-    };
-
-    const handleHighlightCheapestChange = (isChecked) => {
-        setHighlightCheapest(isChecked);
-    };
-
-    const handleAddStore = (storeData) => {
-        setGroceryStores(currentStores => {
-            const newStore = new GroceryStore(
-                Date.now(),
-                storeData.name,
-                storeData.address,
-                storeData.zip
-            );
-            const updatedStores = [...currentStores, newStore];
-            localStorage.setItem('groceryStores', JSON.stringify(updatedStores));
-            return updatedStores;
-        });
     };
 
     const handleAddItemToStore = (storeId, itemData) => {

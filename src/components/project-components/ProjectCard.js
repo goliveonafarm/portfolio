@@ -9,10 +9,10 @@ const ProjectCard = ({ project }) => {
     const { name, description, techStack, imageDir, link, url } = project;
     return (
         <Col sm={12} md={6} className='pb-3'>
-            <Card className=' h-100'>
+            <Card className='border h-100' bg='dark' text='light'>
                 <Row>
                     <Col xs={12} >
-                        <Card.Img className='' src={imageDir} alt={`Screen shot of ${name} page`}></Card.Img>
+                        <Card.Img className='border' src={imageDir} alt={`Screen shot of ${name} page`}></Card.Img>
                     </Col>
                     <Col xs={12}>
                         <Card.Body>

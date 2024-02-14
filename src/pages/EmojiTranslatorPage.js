@@ -51,8 +51,7 @@ const EmojiTranslatorPage = () => {
     const handleClickEmoji = (e) => changeEmoji(e.target.textContent);
 
     const handleEnterEmoji = (e) => {
-        if (e.key !== 'Enter') return;
-        changeEmoji(e.target.textContent);
+        if (e.key === 'Enter') changeEmoji(e.target.textContent);
     }
 
     return (

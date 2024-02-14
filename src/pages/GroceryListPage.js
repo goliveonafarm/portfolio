@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import AddGroceryStoreForm from '../components/grocery-store-components/AddGroceryStoreForm';
 import Checkbox from '../components/form-elements/Checkbox/Checkbox'
 import CustomTooltip from '../components/ui/CustomTooltip/CustomTooltip';
@@ -7,11 +7,9 @@ import GroceryStores from '../components/grocery-store-components/GroceryStores'
 
 const GroceryListPage = () => {
     const [groceryStores, setGroceryStores] = useState([]);
-    const [highlightCheapest, setHighlightCheapest] = useState(false);
+    const [highlightCheapest, setHighlightCheapest] = useState(true);
 
-    const handleHighlightCheapestChange = (isChecked) => {
-        setHighlightCheapest(isChecked);
-    };
+    const handleHighlightCheapestChange = (isChecked) => setHighlightCheapest(isChecked);
 
     return (
         <div>
