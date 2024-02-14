@@ -6,10 +6,8 @@ import TextInput from '../components/form-elements/TextInput/TextInput';
 import { useDebounce } from '../hooks/useDebounce';
 import { decodeInput, findEmoji, addEmojiAndVariantsToList } from '../services/emojiConversionService';
 import EmojiButton from '../components/emoji-components/EmojiButton/EmojiButton';
-import NumberResultsDropDownBtn from '../components/form-elements/NumberResultsDropDownBtn/NumberResultsDropDown';
-import PaginationNavigator from '../components/form-elements/PaginationNavigator/PaginationNavigator';
 import EmojiPropertiesWindow from '../components/emoji-components/EmojiPropertiesWindow/EmojiPropertiesWindow';
-import usePagination from '../hooks/usePagination';
+import EmojiButtons from '../components/emoji-components/EmojiButtons';
 
 const EmojiTranslatorPage = () => {
     const [originalMessage, setOriginalMessage] = useState('');
@@ -29,9 +27,6 @@ const EmojiTranslatorPage = () => {
         return emojiArray;
     }, []);
 
-    const [itemsPerPage, setItemsPerPage] = useState('300');
-    const { currentPage, paginate, currentItems, pageCount } = usePagination(supportedEmojisArray, itemsPerPage);
-
     const debouncedOriginalMessage = useDebounce(originalMessage, 100);
 
     useEffect(() => {
@@ -40,49 +35,25 @@ const EmojiTranslatorPage = () => {
 
     }, [debouncedOriginalMessage, allEmojisArray]);
 
-    const handleTextChange = (text) => {
-        setOriginalMessage(text);
-    };
+    const handleTextChange = (text) => setOriginalMessage(text);
 
-    const handleEmojiInputChange = (emoji) => {
-        if (emoji) {
-            let match = findEmoji(emoji, allEmojisArray);
-            if (match) {
-                setEmojiInput({ ...match });
-            } else {
-                setEmojiInput(null);
-            }
-        } else {
+    const changeEmoji = (input) => {
+        if (!input) {
             setEmojiInput(null);
+            return;
         }
-    };
-
-    const handleClickEmoji = (e) => {
-        const emojiText = e.target.textContent;
-        let match = findEmoji(emojiText, allEmojisArray);
+        let match = findEmoji(input, allEmojisArray);
         if (match) setEmojiInput({ ...match });
-    };
-
-    const handleEnterEmoji = (e) => {
-        if (e.key === 'Enter') {
-            const emojiText = e.target.textContent;
-            let match = findEmoji(emojiText, allEmojisArray);
-            if (match) setEmojiInput({ ...match });
-        }
     }
 
-    const onChangeItemsPerPage = (paginateSettingObj, newItemsPerPage) => {
-        //can change this later to update pagination settings to local storagef
-        return;
-    };
+    const handleEmojiInputChange = (input) => changeEmoji(input);
 
-    const emojiButtons = useMemo(() => (
-        currentItems.map((emoji) => (
-            <Col style={{ padding: 0 }} key={emoji.slug}>
-                <EmojiButton emojiObject={emoji} />
-            </Col>
-        ))
-    ), [currentItems]);
+    const handleClickEmoji = (e) => changeEmoji(e.target.textContent);
+
+    const handleEnterEmoji = (e) => {
+        if (e.key !== 'Enter') return;
+        changeEmoji(e.target.textContent);
+    }
 
     return (
         <div>
@@ -125,30 +96,11 @@ const EmojiTranslatorPage = () => {
                 handleClick={handleClickEmoji}
                 handleKeyDown={handleEnterEmoji}
             />
-            <Row onClick={handleClickEmoji}
-                onKeyDown={handleEnterEmoji}
-                className='pb-3'>
-                {emojiButtons}
-            </Row>
-            <Row>
-                <Col>
-                    <PaginationNavigator
-                        pageCount={pageCount}
-                        currentPage={currentPage}
-                        paginate={paginate}
-                    />
-                </Col>
-                <Col>
-                    <NumberResultsDropDownBtn
-                        itemsPerPage={itemsPerPage}
-                        setItemsPerPage={setItemsPerPage}
-                        setCurrentPage={paginate}
-                        onChangeItemsPerPage={onChangeItemsPerPage}
-                        resultsPerPage={[300, 500, 1000, 4000]}
-                        variant={"dark"}
-                    />
-                </Col>
-            </Row>
+            <EmojiButtons
+                handleClickEmoji={handleClickEmoji}
+                handleEnterEmoji={handleEnterEmoji}
+                supportedEmojisArray={supportedEmojisArray}
+            />
         </div >
     )
 }

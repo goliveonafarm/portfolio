@@ -4,7 +4,7 @@ import { findEmoji, convertEmojiIntoCodeByteString } from '../../../services/emo
 import './EmojiPropertiesWindow.css';
 
 const EmojiPropertiesWindow = ({ emoji, emojiList, handleClick, handleKeyDown }) => {
-    const classNames = `bg-dark text-light border border-secondary rounded emojiWindow`;
+    const classNames = `bg-dark  text-light border border-secondary rounded shadow-lg emojiWindow`;
 
     if (emoji === null) return (<Row className={classNames}></Row>);
 

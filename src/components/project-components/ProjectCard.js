@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faCode } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const ProjectCard = ({ project, imageOnLeft }) => {
+const ProjectCard = ({ project }) => {
     const { name, description, techStack, imageDir, link, url } = project;
     return (
         <Col sm={12} md={6} className='pb-3'>
