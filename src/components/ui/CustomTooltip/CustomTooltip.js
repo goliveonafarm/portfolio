@@ -1,12 +1,9 @@
 import { React, useState, useEffect } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import './CustomTooltip.css';
 import generateUniqueId from '../../../utils/generateUniqueId';
-
-
-const CustomTooltip = ({ children, tooltipText, placement, variant = {} }) => {
+ 
+const CustomTooltip = ({ children, tooltipText, placement = 'top', variant = {} }) => {
     const [hasScrollbar, setHasScrollbar] = useState(false);
-    
     const key = generateUniqueId();
 
     useEffect(() => {
@@ -28,7 +25,7 @@ const CustomTooltip = ({ children, tooltipText, placement, variant = {} }) => {
     return (
         <OverlayTrigger
             key={key}
-            placement={placement || 'top'}
+            placement={placement}
             overlay={
                 <Tooltip
                     className={hasScrollbar ? 'position-absolute' : 'position-fixed'}

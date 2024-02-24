@@ -1,10 +1,7 @@
-import styles from './TextInput.module.css';
 import generateUniqueId from '../../../utils/generateUniqueId';
+import styles from './TextInput.module.css';
 
 const TextInput = ({ value, placeholder, onTextChange }) => {
-    const handleChange = (event) => {
-        onTextChange(event.target.value);
-    };
 
     return (
         <input
@@ -12,7 +9,7 @@ const TextInput = ({ value, placeholder, onTextChange }) => {
             type="text"
             placeholder={placeholder}
             value={value}
-            onChange={handleChange}
+            onChange={(e) => onTextChange(e.target.value)}
             className={styles['text-input']}
         />
     )

@@ -1,11 +1,9 @@
+import React from 'react';
 import { Form } from 'react-bootstrap';
-import './Checkbox.css';
 
-const Checkbox = ({ label, checked, onCheckboxChange }) => {
-    const handleChange = (e) => {
-        onCheckboxChange(e.target.checked);
-    };
-
+const Checkbox = React.forwardRef(({ label, checked, onCheckboxChange }, ref) => {
+    const handleChange = (e) => onCheckboxChange(e.target.checked);
+    
     return (
         <Form.Group
             controlId='formBasicCheckbox'>
@@ -13,9 +11,10 @@ const Checkbox = ({ label, checked, onCheckboxChange }) => {
                 type='checkbox'
                 label={label}
                 checked={checked}
-                onChange={handleChange} />
+                onChange={handleChange}
+                ref={ref} />
         </Form.Group>
     )
-}
+});
 
 export default Checkbox;

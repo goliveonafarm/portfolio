@@ -1,28 +1,22 @@
-import { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';   
-import searchBarResults from '../../../utils/searchBarResults';
+import { useRef, useState } from 'react';
+import { Container, Form, Row } from 'react-bootstrap';
+import searchBarResults from './utils/searchBarResults';
+import useClickOutside from './hooks/useClickOutside';
 import capitalizeFirstLetterOfString from '../../../utils/capitalizeFirstLetterOfString';
-import './SearchBar.css';
-
+import styles from './SearchBar.module.css';
 
 const SearchBar = ({ value, field, resultsList, handleFormDataChange }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [highlightedItemIndex, setHighlightedItemIndex] = useState(-1);
 
-    useEffect(() => {
-        const handleClickAnywhere = (e) => {
-            if (!e.target.closest('.search-results')) {
-                clearSearchResults();
-            }
-        };
-        document.addEventListener('mousedown', handleClickAnywhere);
-        return () => document.removeEventListener('mousedown', handleClickAnywhere)
-    }, []);
-
     const clearSearchResults = () => {
         setSearchResults([]);
         setHighlightedItemIndex(-1);
     };
+
+    // Ref to the search bar to detect clicks outside of it (to clear search results)
+    const searchBarRef = useRef(null);
+    useClickOutside(searchBarRef, clearSearchResults);
 
     const handleOnChange = (e) => {
         handleFormDataChange(field, e.target.value);
@@ -62,22 +56,13 @@ const SearchBar = ({ value, field, resultsList, handleFormDataChange }) => {
         }
     };
 
-    const handleMouseClickSearchBar = (e) => {
-        setSearchResults(e.target.value ? searchBarResults(resultsList, e.target.value) : [])
-    };
-
-    const handleMouseOutSearchResult = () => {
-        clearSearchResults();
-    };
-
-    const handleMouseEnterSearchResult = (index) =>{
-        setHighlightedItemIndex(index)
-    };
+    const handleMouseClickSearchBar = (e) => setSearchResults(e.target.value ? searchBarResults(resultsList, e.target.value) : [])
 
     return (
         <span
+            ref={searchBarRef}
             aria-label={`Enter or search ${field}s`}
-            onMouseLeave={() => handleMouseOutSearchResult()}
+            onMouseLeave={() => clearSearchResults()}
         >
             <Form.Control
                 required
@@ -89,27 +74,28 @@ const SearchBar = ({ value, field, resultsList, handleFormDataChange }) => {
                 onKeyDown={(e) => { handleOnKeyDown(e) }}
                 onClick={(e) => handleMouseClickSearchBar(e)}
             />
-
-            <div
-                className='position-absolute search-results'
+            <Container
+                className={`position-absolute ${styles['search-results']}`}
                 style={{ zIndex: 1 }}
             >
-                {searchResults.map((item, index) => (
-                    <Form.Control
-                        key={`form-control-${item}-${index}`}
-                        aria-label={`Search result:${item}`}
-                        className='search-result-item'
-                        role='option'
-                        name={item}
-                        value={item}
-                        readOnly
-                        onClick={() => handleClickOnSearchResult(item)}
-                        style={index === highlightedItemIndex ? { backgroundColor: 'lightgray' } : {}}
-                        onKeyDown={(e) => handleKeyDownSearchResult(e, item)}
-                        onMouseEnter={()=>handleMouseEnterSearchResult(index)}
-                    />
-                ))}
-            </div>
+                <Row>
+                    {searchResults.map((item, index) => (
+                        <Form.Control
+                            key={`form-control-${item}-${index}`}
+                            aria-label={`Search result:${item}`}
+                            className={styles['search-result-item']}
+                            role='option'
+                            name={item}
+                            value={item}
+                            readOnly
+                            onClick={() => handleClickOnSearchResult(item)}
+                            style={index === highlightedItemIndex ? { backgroundColor: 'lightgray' } : {}}
+                            onKeyDown={(e) => handleKeyDownSearchResult(e, item)}
+                            onMouseEnter={() => setHighlightedItemIndex(index)}
+                        />
+                    ))}
+                </Row>
+            </Container>
         </span>
     )
 }

@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import AppRoutes from './AppRoutes';
-import NavBar from './components/NavBar.js';
-import Footer from './components/Footer.js';
+import { NavBar, Footer } from './layouts';
+import './App.css';
 
 function App() {
   return (

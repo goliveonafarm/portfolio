@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import EmojiTranslatorPage from './pages/EmojiTranslatorPage'
-import GroceryListPage from './pages/GroceryListPage'
-import NotFoundPage from './pages/NotFoundPage';
+import HomePage from './pages/Home';
+import AboutPage from './pages/About';
+import EmojiTranslatorPage from './pages/EmojiTranslator'
+import GroceryListPage from './pages/GroceryList'
+import NotFoundPage from './pages/NotFound';
 
 const AppRoutes = () => {
   return (

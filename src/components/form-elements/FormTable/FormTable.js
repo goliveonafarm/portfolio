@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import { Table, CloseButton, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
-import './FormTable.css';
 import CustomTooltip from '../../ui/CustomTooltip/CustomTooltip';
-import usePagination from '../../../hooks/usePagination';
+import { usePagination} from '../index';
 import PaginationNavigator from '../PaginationNavigator/PaginationNavigator';
-import NumberResultsDropDownBtn from '../NumberResultsDropDownBtn/NumberResultsDropDown';
-import sortItems from '../../../utils/arraySorting';
+import NumberResultsDropDownBtn from '../NumberResultsDropDownBtn/NumberResultsDropDownBtn';
+import { sortItems } from '../../../utils'
 import generateUniqueId from '../../../utils/generateUniqueId';
 
 const FormTable = ({ onChangeItemsPerPage, paginationObject, hasSpecialCol, handleCloseButton, getTooltipContent }) => {
@@ -92,7 +91,7 @@ const FormTable = ({ onChangeItemsPerPage, paginationObject, hasSpecialCol, hand
                                 ))}
                                 <td>
                                     <CustomTooltip tooltipText={deleteToolTip} variant={'danger'}>
-                                        <CloseButton className='bg-secondary' onClick={(e) => handleCloseButton(item.id)} />
+                                        <CloseButton className='bg-secondary' onClick={() => handleCloseButton(item.id)} />
                                     </CustomTooltip>
                                 </td>
                             </tr>
@@ -101,7 +100,7 @@ const FormTable = ({ onChangeItemsPerPage, paginationObject, hasSpecialCol, hand
                 </tbody>
             </Table>
             <Row>
-                <Col>
+                <Col className='pt-2'>
                     <PaginationNavigator
                         pageCount={pageCount}
                         currentPage={currentPage}

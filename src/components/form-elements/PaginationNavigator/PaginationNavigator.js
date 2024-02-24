@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import './PaginationNavigator.css';
-import { Pagination, Row } from 'react-bootstrap';
+import { Pagination } from 'react-bootstrap';
 import generateUniqueId from '../../../utils/generateUniqueId';
 
 const PaginationNavigator = ({ pageCount, currentPage, paginate, variant = 'dark' }) => {
@@ -36,16 +35,11 @@ const PaginationNavigator = ({ pageCount, currentPage, paginate, variant = 'dark
 
   let startPage = calculateStartPage();
   let endPage = Math.min(startPage + maxPagesToShow - 1, pageCount);
-
-  return (
-    <Row className='pt-2'>
+  if (pageCount <= 7 ) {
+    return (
       <Pagination data-bs-theme={`${variant}`}>
-        <Pagination.First onClick={() => paginate(1)} disabled={currentPage === 1} />
-        <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
-
-        {startPage > 1 && !isSmallScreen && <Pagination.Ellipsis disabled />}
-        {[...Array(endPage + 1 - startPage).keys()].map((i) => {
-          const pageNumber = startPage + i
+        {[...Array(pageCount).keys()].map((i) => {
+          const pageNumber = i + 1
           return (
             <Pagination.Item
               key={generateUniqueId()}
@@ -56,12 +50,36 @@ const PaginationNavigator = ({ pageCount, currentPage, paginate, variant = 'dark
             </Pagination.Item>
           );
         })}
-        {endPage < pageCount && !isSmallScreen && <Pagination.Ellipsis disabled />}
 
-        <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={currentPage === pageCount} />
-        <Pagination.Last onClick={() => paginate(pageCount)} disabled={currentPage === pageCount} />
       </Pagination>
-    </Row>
+    )
+  }
+
+
+
+  return (
+    <Pagination data-bs-theme={`${variant}`}>
+      <Pagination.First onClick={() => paginate(1)} disabled={currentPage === 1} />
+      <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
+
+      {startPage > 1 && !isSmallScreen && <Pagination.Ellipsis disabled />}
+      {[...Array(endPage + 1 - startPage).keys()].map((i) => {
+        const pageNumber = startPage + i
+        return (
+          <Pagination.Item
+            key={generateUniqueId()}
+            active={pageNumber === currentPage}
+            onClick={() => paginate(pageNumber)}
+          >
+            {pageNumber}
+          </Pagination.Item>
+        );
+      })}
+      {endPage < pageCount && !isSmallScreen && <Pagination.Ellipsis disabled />}
+
+      <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={currentPage === pageCount} />
+      <Pagination.Last onClick={() => paginate(pageCount)} disabled={currentPage === pageCount} />
+    </Pagination>
   )
 }
 
