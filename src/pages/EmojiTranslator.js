@@ -33,9 +33,7 @@ const EmojiTranslatorPage = () => {
         if (match) setEmojiInput({ ...match });
     }
 
-    const handleEmojiInputChange = (eTargetVal) => {
-        changeEmoji(eTargetVal)
-    };
+    const handleEmojiInputChange = (eTargetVal) => changeEmoji(eTargetVal);
 
     const handleClickEmoji = (e) => changeEmoji(e.target.textContent);
 

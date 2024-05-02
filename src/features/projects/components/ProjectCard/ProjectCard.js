@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faCode } from '@fortawesome/free-solid-svg-icons';
 
 const ProjectCard = ({ project }) => {
-    const { name, description, techStack, imageDir, link, url } = project;
+    const { name, description, techStack, imageDir, link, hosted, url } = project;
     return (
         <Col sm={12} md={6} className='pb-3'>
             <Card className='border h-100' bg='dark' text='light'>
@@ -18,16 +18,22 @@ const ProjectCard = ({ project }) => {
                             <Card.Title>
                                 {name}
                             </Card.Title>
-          
+
                             <Card.Text>
                                 {description}
                             </Card.Text>
                             <Row>
                                 <Col xs={12}>
-                                    <Link to={link}>
+                                    {link && (<Link to={link}>
                                         <FontAwesomeIcon icon={faLink} aria-label={`open ${name} page`} />
                                         <code className='font-monospace ps-1'>Hosted</code>
-                                    </Link>
+                                    </Link>)}
+                                    {hosted && (
+                                        <a href={hosted} target="_blank" rel="noopener noreferrer">
+                                            <FontAwesomeIcon icon={faLink} aria-label={`open ${name} page`} />
+                                            <code className='font-monospace ps-1'>Hosted</code>
+                                        </a>
+                                    )}
                                 </Col>
                             </Row>
                             <Row className='pb-3'>

@@ -1,16 +1,35 @@
 [
   {
+    "name": "QR-Connects",
+    "description": "Create a QR-Connect and invite your friends! Set up a potluck, afterparty, or share a poll. Features MERN stack (MongoDB Express React NodeJs).",
+    "techStack": [
+      "MongoDB",
+      "Express",
+      "React",
+      "NodeJs",
+      "JavaScript",
+      "HTML",
+      "DaisyUI",
+      "Tailwind"
+    ],
+    "imageDir": ["/assets/images/projectScreenshots/qrConnectsExample.png"],
+    "hosted": "https://qr-connects.com/loading/6633166bbc59512e45d07d36",
+    "url": "https://github.com/goliveonafarm/qr-connects"
+  },
+  {
     "name": "Grocery List Manager",
     "description": "This application allows you to add grocery stores and items. Automatically calculates unit pricing. See which items are the cheapest, or where to find them.",
-    "techStack": ["JavaScript","React", "HTML", "CSS", "Bootstrap"],
-    "imageDir": ["/assets/images/projectScreenshots/groceryListPageExample.png"],
+    "techStack": ["JavaScript", "NodeJs", "React", "HTML", "CSS", "Bootstrap"],
+    "imageDir": [
+      "/assets/images/projectScreenshots/groceryListPageExample.png"
+    ],
     "link": "/grocery-list",
     "url": "https://github.com/goliveonafarm/GroceryManager"
   },
   {
     "name": "Emoji Translator & Keyboard",
     "description": "Decodes user input while changing any emojis into their description values. Also features an emoji keyboard, clickable emojis, and an information area detailing each emoji.",
-    "techStack": ["JavaScript","React", "HTML", "CSS", "Bootstrap"],
+    "techStack": ["JavaScript", "NodeJs", "React", "HTML", "CSS", "Bootstrap"],
     "imageDir": ["/assets/images/projectScreenshots/emojiKeyboardExample.png"],
     "link": "/emoji-translator",
     "url": "https://github.com/goliveonafarm/EmojiTranslator"

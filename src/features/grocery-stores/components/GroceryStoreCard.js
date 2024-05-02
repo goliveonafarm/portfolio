@@ -3,14 +3,9 @@ import AddGroceryItemForm from './AddGroceryItemForm'
 import { FormTable } from '../../../components/form-elements/'
 import CustomTooltip from '../../../components/ui/CustomTooltip/CustomTooltip';
 
-const GroceryStoreCard = ({ store, highlightCheapest, onAddItem, onDeleteItem, onDeleteStore, onChangeItemsPerPage, itemList, brandList, getTooltipContent, groceryStores, setGroceryStores }) => {
-    const handleDeleteButton = (itemId) => {
-        onDeleteItem(setGroceryStores, store.id, itemId)
-    }
-
-    const handleOnChangeItemsPerPage = (newItemsPerPage) => {
-        onChangeItemsPerPage(setGroceryStores, store.id, newItemsPerPage)
-    }
+const GroceryStoreCard = ({ store, highlightCheapest, onAddItem, onDeleteItem, onDeleteStore, onChangeItemsPerPage, itemList, brandList, getTooltipContent, setGroceryStores }) => {
+    const handleDeleteButton = (itemId) => onDeleteItem(setGroceryStores, store.id, itemId);
+    const handleOnChangeItemsPerPage = (newItemsPerPage) => onChangeItemsPerPage(setGroceryStores, store.id, newItemsPerPage);
 
     return (
         <Card className="mb-3 bg-dark text-white border-white">

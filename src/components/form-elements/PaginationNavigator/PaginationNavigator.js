@@ -19,9 +19,7 @@ const PaginationNavigator = ({ pageCount, currentPage, paginate, variant = 'dark
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  if (pageCount <= 1) {
-    return null;
-  };
+  if (pageCount <= 1) return null;
 
   const calculateStartPage = () => {
     if (currentPage <= 2) {
@@ -35,6 +33,7 @@ const PaginationNavigator = ({ pageCount, currentPage, paginate, variant = 'dark
 
   let startPage = calculateStartPage();
   let endPage = Math.min(startPage + maxPagesToShow - 1, pageCount);
+  
   if (pageCount <= 7 ) {
     return (
       <Pagination data-bs-theme={`${variant}`}>
@@ -54,8 +53,6 @@ const PaginationNavigator = ({ pageCount, currentPage, paginate, variant = 'dark
       </Pagination>
     )
   }
-
-
 
   return (
     <Pagination data-bs-theme={`${variant}`}>
